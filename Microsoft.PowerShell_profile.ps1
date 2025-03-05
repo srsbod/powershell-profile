@@ -185,7 +185,17 @@ function Edit-Profile {
 }
 Set-Alias -Name ep -Value Edit-Profile
 
-function touch($file) { "" | Out-File $file -Encoding ASCII }
+function touch($file) {
+    # Test the file path exists, create if not
+    $folder = Split-Path $file -Parent
+    if ($folder) {
+        if (-not (Test-Path (Split-Path $file -Parent))) {
+            New-Item $folder -ItemType Directory -Force -ErrorAction Stop | Out-Null
+        }
+    }
+    "" | Out-File $file -Encoding ASCII
+}
+
 function ff($name) {
     Get-ChildItem -recurse -filter "*${name}*" -ErrorAction SilentlyContinue | ForEach-Object {
         Write-Output "$($_.FullName)"
