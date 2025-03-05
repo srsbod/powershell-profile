@@ -327,6 +327,32 @@ function hb {
         Write-Error "Failed to upload the document. Error: $_"
     }
 }
+
+function shutdown($delay) {
+    if ($delay -eq "now") {
+        shutdown.exe /s /f /t 0
+    }
+    elseif (-not $delay) {
+        shutdown /s /f /t 60
+    }
+    else {
+        shutdown /s /f /t [int]$delay
+    }
+}
+
+function reboot($delay) {
+    if ($delay -eq "now") {
+        shutdown.exe /r /f /t 0
+    }
+    elseif (-not $delay) {
+        shutdown /r /f /t 60
+    }
+    else {
+        shutdown /r /f /t [int]$delay
+    }
+}
+
+
 function grep($regex, $dir) {
     if ( $dir ) {
         Get-ChildItem $dir | select-string $regex
