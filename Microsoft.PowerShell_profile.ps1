@@ -328,9 +328,10 @@ function hb {
     }
 }
 
+#TODO: Do not use shutdown.exe
 function shutdown($delay) {
     if ($delay -eq "now") {
-        shutdown.exe /s /f /t 0
+        Stop-Computer -Force
     }
     elseif (-not $delay) {
         shutdown.exe /s /f /t 60
@@ -340,9 +341,10 @@ function shutdown($delay) {
     }
 }
 
+#TODO: Do not use shutdown.exe
 function reboot($delay) {
     if ($delay -eq "now") {
-        shutdown.exe /r /f /t 0
+        Restart-Computer -Force
     }
     elseif (-not $delay) {
         shutdown.exe /r /f /t 60
