@@ -333,10 +333,10 @@ function shutdown($delay) {
         shutdown.exe /s /f /t 0
     }
     elseif (-not $delay) {
-        shutdown /s /f /t 60
+        shutdown.exe /s /f /t 60
     }
     else {
-        shutdown /s /f /t [int]$delay
+        shutdown.exe /s /f /t [int]$delay
     }
 }
 
@@ -345,10 +345,10 @@ function reboot($delay) {
         shutdown.exe /r /f /t 0
     }
     elseif (-not $delay) {
-        shutdown /r /f /t 60
+        shutdown.exe /r /f /t 60
     }
     else {
-        shutdown /r /f /t [int]$delay
+        shutdown.exe /r /f /t [int]$delay
     }
 }
 
