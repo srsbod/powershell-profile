@@ -127,7 +127,7 @@ if (-not $debug -and `
 #elseif (-not $debug) {
 #    Write-Warning "Profile and Powershell update skipped. Next update check at $($updateDate.AddDays($updateInterval).ToString('yyyy-MM-dd'))."
 #}
-else {
+elseif ($debug) {
     Write-Warning "Skipping profile and Powershell update check in debug mode"
 }
 function Clear-Cache {
@@ -207,12 +207,12 @@ function Get-PubIP { (Invoke-WebRequest http://ifconfig.me/ip).Content }
 
 # Open WinUtil full-release
 function winutil {
-    irm https://christitus.com/win | iex
+    Invoke-RestMethod https://christitus.com/win | Invoke-Expression
 }
 
 # Open WinUtil pre-release
 function winutildev {
-    irm https://christitus.com/windev | iex
+    Invoke-RestMethod https://christitus.com/windev | Invoke-Expression
 }
 
 # System Utilities
